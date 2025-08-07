@@ -1,6 +1,13 @@
 {
     "configurations": [
-    
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "https://localhost:4200",
+            "webRoot": "${workspaceFolder}/skinet/client"
+        },
+       
         {
             "name": "C#: API  Debug",
             "type": "dotnet",
