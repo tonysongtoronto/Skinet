@@ -1,0 +1,68 @@
+    .match-input-height {
+            height: 56px; /* Standard Angular Material input height */
+        }
+
+        .mat-flat-button {
+            background-color: #1976d2;
+            color: white;
+            padding: 0 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mat-flat-button:hover {
+            background-color: #1565c0;
+        }
+
+        .mat-form-field {
+            position: relative;
+        }
+
+        .mat-form-field input {
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            padding: 16px 12px;
+            font-size: 16px;
+            outline: none;
+            width: 120px;
+        }
+
+        .mat-form-field input:focus {
+            border-color: #1976d2;
+        }
+
+        .mat-form-field label {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            background: white;
+            padding: 0 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .mat-divider {
+            border-bottom: 1px solid #e0e0e0;
+            margin: 24px 0;
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+        }
