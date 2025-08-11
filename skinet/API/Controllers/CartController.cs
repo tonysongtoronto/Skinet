@@ -2,6 +2,7 @@ using System;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 using StackExchange.Redis;
 
@@ -9,8 +10,8 @@ using StackExchange.Redis;
 namespace API.Controllers;
 
 public class CartController(ICartService cartService,
-IConnectionMultiplexer redis,
-ILogger<CartController> logger) : BaseApiController
+IConnectionMultiplexer redis
+) : BaseApiController
 {
 
     [HttpGet("test-redis-read/{cartId}")]
@@ -18,13 +19,19 @@ ILogger<CartController> logger) : BaseApiController
     {
         var db = redis.GetDatabase();
 
-         logger.LogError("Redis连接字符串: LogError");
+  
 
-          logger.LogDebug("Redis连接字符串: LogDebug");
+         Log.Information("Fetching all products");
+
+           Log.Debug("Fetching all products Debug");
+
+             Log.Error("Fetching all products Error");
+
+     
 
         // 检查key是否存在
         bool exists = await db.KeyExistsAsync(cartId);
-        logger.LogInformation("Redis连接字符串: {ConnectionString}", redis.Configuration);
+     
 
         if (exists)
         {
@@ -36,12 +43,16 @@ ILogger<CartController> logger) : BaseApiController
     }
 
 [HttpGet("test-redis-keys")]
-public async Task<IActionResult> TestRedisKeys()
+public  IActionResult TestRedisKeys()
 {
 
-     logger.LogError("Redis连接字符串: LogError");
+         Log.Information("test-redis-keys");
 
-    logger.LogDebug("Redis连接字符串: LogDebug");
+           Log.Debug("test-redis-keys Debug");
+
+             Log.Error("test-redis-keys Error");
+
+
     var server = redis.GetServer("localhost:6379");
     var keys = server.Keys(database: 0).ToList();
     
