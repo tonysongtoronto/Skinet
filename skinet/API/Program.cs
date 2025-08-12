@@ -18,11 +18,10 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
-Log.Information("Fetching all products 123");
-
+Log.Information("Fetching all products");
 
 builder.Services.AddControllers();
-Log.Debug("Retrieved products 456");
+
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -42,11 +41,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<StoreContext>();
 
-Log.Information("哈 哈 哈  啪啪啪");
-
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleware>();
@@ -56,6 +51,8 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowCredentials()
     .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+
+
 
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();
