@@ -2,26 +2,47 @@ import { Component, inject } from '@angular/core';
 import { MatIcon } from "@angular/material/icon";
 import { MatButton } from "@angular/material/button";
 import { MatBadge } from "@angular/material/badge";
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { BusyService } from '../../app/core/services/busy.service';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatProgressBar } from "@angular/material/progress-bar";
+
+import { MatDivider } from '@angular/material/divider';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { CartService } from '../../app/core/services/cart.service';
+import { AccountService } from '../../app/core/services/account.service';
+import { BusyService } from '../../app/core/services/busy.service';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   imports: [
     MatIcon,
-  MatButton,
+    MatButton,
     MatBadge,
-      RouterLink,
+    RouterLink,
     RouterLinkActive,
-     MatProgressBar
+    MatProgressBar,
+    MatMenuTrigger,
+    MatMenu,
+    MatDivider,
+    MatMenuItem
+
+
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-   busyService = inject(BusyService);
-     cartService = inject(CartService);
+  busyService = inject(BusyService);
+  cartService = inject(CartService);
+  accountService = inject(AccountService);
+  private router = inject(Router);
 
+  logout() {
+    this.accountService.logout().subscribe({
+      next: () => {
+        this.accountService.currentUser.set(null);
+        this.router.navigateByUrl('/');
+      }
+    });
+  }
 }
