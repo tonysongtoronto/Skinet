@@ -9,6 +9,15 @@ namespace API.Extensions;
 
 public static class ClaimsPrincipleExtensions
 {
+
+     public static string GetEmail(this ClaimsPrincipal user)
+    {
+        var email = user.FindFirstValue(ClaimTypes.Email)
+            ?? throw new AuthenticationException("Email claim not found");
+        return email;
+    }
+
+    
     public static async Task<AppUser> GetUserByEmail(this UserManager<AppUser> userManager, ClaimsPrincipal user)
     {
         var userToReturn = await userManager.Users.FirstOrDefaultAsync(x =>
@@ -30,10 +39,5 @@ public static class ClaimsPrincipleExtensions
         return userToReturn;
     }
 
-    public static string GetEmail(this ClaimsPrincipal user)
-    {
-        var email = user.FindFirstValue(ClaimTypes.Email)
-            ?? throw new AuthenticationException("Email claim not found");
-        return email;
-    }
+
 }
