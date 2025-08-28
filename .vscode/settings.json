@@ -1,1 +1,8 @@
-{}
+{
+    "files.exclude": {
+        "**/bin": false,
+        "**/obj": false
+    },
+    "appService.defaultWebAppToDeploy": "/subscriptions/9b71c861-2948-4c04-9d9c-4ee7d9e86155/resourceGroups/skinet-2025-rg/providers/Microsoft.Web/sites/skinet-course",
+    "appService.deploySubpath": "skinet\\API\\bin\\Publish"
+}
