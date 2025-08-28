@@ -12,25 +12,34 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
-    env: 
+    
+    env:
       PROJECT_PATH: ./API
- 
-
+      
     steps:
       - uses: actions/checkout@v4
-
+      
+      # 添加调试步骤 - 查看文件结构
+      - name: Debug - List files
+        run: |
+          echo "Current directory:"
+          dir
+          echo "API directory:"
+          dir API
+          echo "Looking for .csproj files:"
+          dir *.csproj /s
+      
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
-
+      
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
- 
+        
       - name: dotnet publish
         run: dotnet publish ${{env.PROJECT_PATH}} -c Release -o "${{env.DOTNET_ROOT}}/myapp"
-
+       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -43,20 +52,20 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
-
+     
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+             
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0189E2056F05499088EF050786EA1122 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3648386E05F14485B297CC92268A2B8F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_79DB9842E77C4CFBAC7FD33DACDB5EB5 }}
-
+       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -64,4 +73,3 @@ jobs:
           app-name: 'skinet-course'
           slot-name: 'Production'
           package: .
-          
