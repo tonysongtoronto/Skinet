@@ -6,7 +6,7 @@ using Stripe;
 
 namespace Infrastructure.Services;
 
-public class PaymentService(IConfiguration config, ICartService cartService, 
+public class PaymentService(IConfiguration config, ICartService cartService,
    IUnitOfWork unit) : IPaymentService
 {
     public async Task<ShoppingCart?> CreateOrUpdatePaymentIntent(string cartId)
@@ -24,7 +24,7 @@ public class PaymentService(IConfiguration config, ICartService cartService,
             var deliveryMethod = await unit.Repository<DeliveryMethod>().GetByIdAsync((int)cart.DeliveryMethodId);
 
             if (deliveryMethod == null) return null;
-            
+
             shippingPrice = deliveryMethod.Price;
         }
 
@@ -65,8 +65,12 @@ public class PaymentService(IConfiguration config, ICartService cartService,
             intent = await service.UpdateAsync(cart.PaymentIntentId, options);
         }
 
+  
+
         await cartService.SetCartAsync(cart);
 
         return cart;
     }
 }
+
+

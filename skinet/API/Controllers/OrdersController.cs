@@ -63,10 +63,18 @@ public class OrdersController(ICartService cartService, IUnitOfWork unit) : Base
             BuyerEmail = email
         };
 
+
+
+
+
+
         unit.Repository<Order>().Add(order);
+
+    
 
         if (await unit.Complete())
         {
+
             return order;
         }
 

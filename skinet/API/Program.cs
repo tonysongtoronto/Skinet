@@ -7,6 +7,7 @@ using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 using Serilog;
+using API.SignalR;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<StoreContext>();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -55,9 +57,14 @@ app.UseCors(x => x
     .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+
 
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();
+app.MapHub<NotificationHub>("/hub/notifications");
 
 try
 {

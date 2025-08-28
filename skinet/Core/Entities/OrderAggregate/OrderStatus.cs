@@ -4,10 +4,8 @@ namespace Core.Entities.OrderAggregate;
 
 public enum OrderStatus
 {
-    [EnumMember(Value = "Pending")]
-    Pending,
-    [EnumMember(Value = "Payment Received")]
+   Pending,
     PaymentReceived,
-    [EnumMember(Value = "Payment Failed")]
-    PaymentFailed
+    PaymentFailed,
+    PaymentMismatch
 }
