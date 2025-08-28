@@ -15,8 +15,7 @@ jobs:
 
     env: 
       PROJECT_PATH: ./API
-    permissions:
-      contents: read #This is required for actions/checkout
+ 
 
     steps:
       - uses: actions/checkout@v4
