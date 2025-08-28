@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     
     env:
-      PROJECT_PATH: ./skinet
+      PROJECT_PATH: ./skinet/API
       
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +26,10 @@ jobs:
           dir
           echo "Skinet directory:"
           dir skinet
-          echo "Looking for .csproj files:"
-          dir *.csproj /s
+          echo "API directory:"
+          dir skinet/API
+          echo "Looking for .csproj files in API:"
+          Get-ChildItem -Path "skinet/API" -Filter "*.csproj" -Recurse
       
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
