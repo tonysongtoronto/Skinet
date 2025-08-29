@@ -13,8 +13,12 @@ export class InitService {
   private signalrService = inject(SignalrService);
 
   init() {
+
+
     const cartId = localStorage.getItem('cart_id');
     const cart$ = cartId ? this.cartService.getCart(cartId) : of(null);
+
+   
 
     return forkJoin({
       cart: cart$,

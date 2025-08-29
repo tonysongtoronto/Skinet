@@ -26,6 +26,10 @@ export class AccountService {
   }
 
   getUserInfo() {
+  console.log("tony song ttt");
+   console.log(this.baseUrl);
+
+     console.log("tony song tttooo");
     return this.http.get<User>(this.baseUrl + 'account/user-info').pipe(
         map(user => {
           this.currentUser.set(user);
