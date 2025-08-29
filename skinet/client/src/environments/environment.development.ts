@@ -1,10 +1,16 @@
 export const environment = {
-      production: true,
+   production: true,
   baseUrl: 'api/',
   hubUrl: 'hub/notifications',
-  stripePublicKey: 'pk_test_51S0zrPPbqr39c8q45W1bWRsfSXTOOTAvxzIid2CJkl4xFFge68ziYgLBt6VwRzXGAL9yyKAUGywl7TTaGNYg55Gd00FnJLU2ac'
-
-
-
-
+  stripePublicKey: 'pk_test_51RwEmZ6G9gbT8y8T9dBNI8rGTgFM0EX4wUIddv07Yo17DwTzBk2Vguiwmz8SinIUffPe27YrIJ85C8jNEBRXOrUm00rKpNYi2u'
 };
+
+
+
+export const environment123 = {
+     production: false,
+  baseUrl: 'https://localhost:5001/api/',
+  hubUrl: 'https://localhost:5001/hub/notifications',
+  stripePublicKey: 'pk_test_51RwEmZ6G9gbT8y8T9dBNI8rGTgFM0EX4wUIddv07Yo17DwTzBk2Vguiwmz8SinIUffPe27YrIJ85C8jNEBRXOrUm00rKpNYi2u'
+};
+
