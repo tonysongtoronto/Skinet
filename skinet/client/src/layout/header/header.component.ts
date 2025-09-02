@@ -11,6 +11,7 @@ import { CartService } from '../../app/core/services/cart.service';
 import { AccountService } from '../../app/core/services/account.service';
 import { BusyService } from '../../app/core/services/busy.service';
 import { AsyncPipe, JsonPipe } from '@angular/common';
+import { IsAdmin } from '../../app/shared/directives/is-admin';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,9 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
     MatMenuTrigger,
     MatMenu,
     MatDivider,
-    MatMenuItem
+    MatMenuItem,
+    IsAdmin
+
 
 
   ],

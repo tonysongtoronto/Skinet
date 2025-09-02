@@ -1,4 +1,4 @@
-export const environment = {
+export const environment_456 = {
    production: true,
   baseUrl: 'api/',
   hubUrl: 'hub/notifications',
@@ -7,7 +7,7 @@ export const environment = {
 
 
 
-export const environment123 = {
+export const environment = {
      production: false,
   baseUrl: 'https://localhost:5001/api/',
   hubUrl: 'https://localhost:5001/hub/notifications',
